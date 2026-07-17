@@ -1,6 +1,7 @@
 import { CursoProp, fetchAulas } from '@/services/api';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import Button from '@/components/ui/Button';
 
 export const metadata: Metadata = {
   title: 'Aula',
@@ -26,9 +27,12 @@ export default async function AulaPage({ params }: PageParams) {
 
   return (
     <main className="p-2.5">
-      <h1>{detalhesAulas.nome}</h1>
-      <p>{detalhesAulas.descricao}</p>
-      <p>Duração: {detalhesAulas.tempo} minutos</p>
+      <Button route={`/cursos/${cursoSlug}`} name={'Voltar'} />
+      <div>
+        <h1>{detalhesAulas.nome}</h1>
+        <p>{detalhesAulas.descricao}</p>
+        <p>Duração: {detalhesAulas.tempo} minutos</p>
+      </div>
     </main>
   );
 }
