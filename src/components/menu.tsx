@@ -14,10 +14,7 @@ const Menu = () => {
           <Link href={'/sobre'}>Sobre</Link>
         </li>
         <li>
-          <Link href={'/contato'}>Contato</Link>
-        </li>
-        <li>
-          <Link href={'/cursos'}>Cursos</Link>
+          <Link href={'/acoes'}>Ações</Link>
         </li>
         <li>
           <Link href={'/imc'}>IMC</Link>
