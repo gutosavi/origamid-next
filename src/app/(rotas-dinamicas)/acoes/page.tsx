@@ -23,6 +23,7 @@ export default async function AcoesPage() {
   // });
   // o que vai acontecer é que servidor faz o fetch da nova informação, guarda isso em cache, gera um novo html, e quando acessarmos de novo a página, o novo dado estará visível. Isso faz com que a ação de revalidar o dado, não interfira na performance da aplicação.
   // Nesse caso em específico de ações, não é a melhor abordagem, pois queremos ter os dados renderizados instantâneamente, mas para 95% dos casos, essa será a abordagem utilizada.
+
   const data: AcoesProps = await response.json();
 
   return (

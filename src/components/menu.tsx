@@ -13,12 +13,6 @@ const Menu = () => {
         <li>
           <Link href={'/sobre'}>Sobre</Link>
         </li>
-        <li>
-          <Link href={'/acoes'}>Ações</Link>
-        </li>
-        <li>
-          <Link href={'/imc'}>IMC</Link>
-        </li>
       </ul>
     </div>
   );
