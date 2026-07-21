@@ -1,16 +1,15 @@
 import { cookies } from 'next/headers';
+import { NextRequest } from 'next/server';
 
-export async function GET() {
+export async function POST(request: NextRequest) {
+  const body = await request.json();
   try {
     const response = await fetch('https://api.origamid.online/conta/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        username: 'dog',
-        password: 'dog',
-      }),
+      body: JSON.stringify(body),
     });
 
     if (!response.ok) {
@@ -26,6 +25,10 @@ export async function GET() {
 
     return Response.json(data);
   } catch (error) {
-    console.error('Erro: ', error);
+    console.error(error);
+    return Response.json(
+      { message: 'Erro interno de servidor' },
+      { status: 500 },
+    );
   }
 }

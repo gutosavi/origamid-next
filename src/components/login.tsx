@@ -1,12 +1,40 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 export default function Login() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState('');
+  const router = useRouter();
 
-  const handleClick = () => {
-    console.log('Hello world');
+  const handleClick = async () => {
+    try {
+      setError('');
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+
+      if (!response.ok) {
+        setError('O usuário ou a senha estão incorretos');
+        throw new Error(`Erro ao efetuar login: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      router.push('/dashboard');
+      router.refresh();
+      return result;
+    } catch (error) {
+      console.error('Erro', error);
+    }
   };
 
   return (
@@ -28,11 +56,16 @@ export default function Login() {
         <input
           id="password"
           name="password"
-          type="text"
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="w-32 border border-gray-100 p-1"
         ></input>
+        {error && (
+          <p className="text-red-300 text-sm font-extralight leading-2.5">
+            {error}
+          </p>
+        )}
         <button
           className="text-lg font-bold w-32 h-10 my-2.5 rounded-lg bg-gray-300 text-gray-900"
           onClick={handleClick}
