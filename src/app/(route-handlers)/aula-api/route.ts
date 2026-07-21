@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
+import { NextRequest } from 'next/server';
 
 export async function GET() {
   try {
@@ -20,7 +21,7 @@ export async function GET() {
     const data = await response.json();
 
     // Next.js possui a função cookies para acessar e criar HTTP cookies
-    (await cookies()).set('token', data.token, {
+    (await cookies()).set('token-aula', data.token, {
       httpOnly: true, // sem acesso no cliente
       secure: true, // maior segurança para envios HTTPS
     });
@@ -30,6 +31,12 @@ export async function GET() {
     console.error('Erro', error);
     notFound();
   }
+}
+
+export async function POST(request: NextRequest) {
+  const params = request.nextUrl.searchParams.get('busca');
+  const body = await request.json();
+  return Response.json(body);
 }
 
 /*

@@ -13,6 +13,9 @@ const Menu = () => {
         <li>
           <Link href={'/sobre'}>Sobre</Link>
         </li>
+        <li>
+          <Link href={'/login'}>Login</Link>
+        </li>
       </ul>
     </div>
   );
