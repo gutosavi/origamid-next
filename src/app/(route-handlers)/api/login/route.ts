@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     });
 
     if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
+      return Response.json({ message: 'Dados incorretos' }, { status: 401 });
     }
 
     const data = await response.json();
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       httpOnly: true,
     });
 
-    return Response.json(data);
+    return Response.json({ autorizado: true });
   } catch (error) {
     console.error(error);
     return Response.json(

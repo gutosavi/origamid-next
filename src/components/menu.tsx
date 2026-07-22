@@ -44,7 +44,7 @@ const Menu = async () => {
             <Link href={'/login'}>Login</Link>
           )}
         </li>
-        {data?.autorizado && <LogoutButton data={'token'} />}
+        {data?.autorizado && <LogoutButton data={token?.name} />}
       </ul>
     </div>
   );
