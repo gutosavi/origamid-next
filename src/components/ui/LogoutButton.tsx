@@ -1,6 +1,6 @@
 'use client';
 
-import { deleteCookie } from '@/app/actions';
+import { deleteCookie } from '@/actions/actions';
 import { useRouter } from 'next/navigation';
 
 type LogoutButtonProp = {
