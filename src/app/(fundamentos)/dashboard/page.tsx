@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Cookie from '@/components/cookie';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -9,6 +10,7 @@ export default function DashboardPage() {
   return (
     <main>
       <h1 className="text-2xl font-medium font-[Roboto] p-2.5">Dashboard</h1>
+      <Cookie />
     </main>
   );
 }

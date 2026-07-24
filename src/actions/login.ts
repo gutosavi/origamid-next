@@ -1,6 +1,6 @@
 'use server';
 
-import { cookies } from 'next/headers';
+import { createCookie } from '@/actions/actions';
 
 interface Login {
   username: string;
@@ -21,19 +21,16 @@ export async function login({ username, password }: Login) {
     });
 
     if (!response.ok) {
-      return { message: 'Dados incorretos', status: 401 };
+      return { success: false, message: 'Dados incorretos', status: 401 };
     }
 
     const data = await response.json();
 
-    (await cookies()).set('token', data.token, {
-      secure: true,
-      httpOnly: true,
-    });
+    await createCookie('token', data.token);
 
-    return { autorizado: true };
+    return { success: true };
   } catch (error) {
     console.error(error);
-    return { message: 'Erro no servidor', status: 500 };
+    return { success: false, message: 'Erro no servidor', status: 500 };
   }
 }

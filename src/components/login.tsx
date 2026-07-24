@@ -1,6 +1,6 @@
 'use client';
-import { useRouter } from 'next/navigation';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { login } from '@/actions/login';
 
 // Exemplo de como usar a função login (server action) em um componente React (client component);
@@ -15,10 +15,10 @@ export default function Login() {
       setError('');
       const loginResult = await login({ username, password });
 
-      if (!loginResult.autorizado)
+      if (!loginResult.success)
         setError('O usuário ou a senha estão incorretos');
 
-      if (loginResult.autorizado) router.push('/dashboard');
+      if (loginResult.success) router.push('/dashboard');
     } catch (error) {
       console.error('Erro', error);
     }

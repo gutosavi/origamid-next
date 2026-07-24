@@ -13,6 +13,11 @@ export async function createCookie(key: string, value: string) {
     name: key,
     value: value,
     httpOnly: true,
-    secure: true,
   });
+}
+
+export default async function getCookieValue(name: string) {
+  const cookieStore = await cookies();
+  const theme = cookieStore.get(name)?.value || null;
+  return theme;
 }
