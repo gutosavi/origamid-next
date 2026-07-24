@@ -7,7 +7,7 @@ interface Login {
   password: string;
 }
 
-export async function Login({ username, password }: Login) {
+export async function login({ username, password }: Login) {
   try {
     const response = await fetch('https://api.origamid.online/conta/login', {
       method: 'POST',
@@ -21,7 +21,7 @@ export async function Login({ username, password }: Login) {
     });
 
     if (!response.ok) {
-      return Response.json({ message: 'Dados incorretos' }, { status: 401 });
+      return { message: 'Dados incorretos', status: 401 };
     }
 
     const data = await response.json();
@@ -31,12 +31,9 @@ export async function Login({ username, password }: Login) {
       httpOnly: true,
     });
 
-    return Response.json({ autorizado: true });
+    return { autorizado: true };
   } catch (error) {
     console.error(error);
-    return Response.json(
-      { message: 'Erro interno de servidor' },
-      { status: 500 },
-    );
+    return { message: 'Erro no servidor', status: 500 };
   }
 }

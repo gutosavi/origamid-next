@@ -1,9 +1,8 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import { login } from '@/actions/login';
 
-// Exemplo de como usar a função login (server action) em um componente React (client component);
+// Exemplo de componente de login que utiliza route-handler para lidar com autenticação do usuário. O componente mantém o estado do nome de usuário, senha e mensagens de erro, e envia uma solicitação POST para a rota de login quando o botão de envio é clicado. Se a autenticação for bem-sucedida, o usuário é redirecionado para o dashboard; caso contrário, uma mensagem de erro é exibida.
 export default function Login() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -13,12 +12,27 @@ export default function Login() {
   const handleClick = async () => {
     try {
       setError('');
-      const loginResult = await login({ username, password });
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
 
-      if (!loginResult.autorizado)
+      if (!response.ok) {
         setError('O usuário ou a senha estão incorretos');
+        throw new Error(`Erro ao efetuar login: ${response.status}`);
+      }
 
-      if (loginResult.autorizado) router.push('/dashboard');
+      const result = await response.json();
+
+      router.push('/dashboard');
+      router.refresh();
+      return result;
     } catch (error) {
       console.error('Erro', error);
     }
