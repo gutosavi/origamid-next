@@ -38,7 +38,7 @@ const Menu = async () => {
           <Link href={'/acoes'}>Ações</Link>
         </li>
         <li>
-          <Link href={'/sobre'}>Sobre</Link>
+          <Link href={'/produtos'}>Produtos</Link>
         </li>
         <li>
           {data?.autorizado ? (

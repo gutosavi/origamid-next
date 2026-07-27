@@ -1,9 +1,13 @@
 'use client';
 import React from 'react';
 
-type Produto = {
-  id: number;
+export type Produto = {
+  id?: string;
   nome: string;
+  preco: number;
+  descricao: string;
+  estoque: number;
+  importado: 0 | 1;
 };
 
 export default function ClientFetch() {
@@ -13,7 +17,7 @@ export default function ClientFetch() {
     const fetchData = async (): Promise<void> => {
       const response = await fetch('https://api.origamid.online/produtos');
       const json: Produto[] = await response.json();
-      console.log(json);
+
       setData(json);
     };
     fetchData();
@@ -22,7 +26,9 @@ export default function ClientFetch() {
   return (
     <ul className="px-2.5">
       {data.map((produto) => (
-        <li key={produto.id}>{produto.nome}</li>
+        <li key={produto.id}>
+          {produto.nome}: R$ {produto.preco}
+        </li>
       ))}
     </ul>
   );
