@@ -35,6 +35,9 @@ const Menu = async () => {
           </Link>
         </li>
         <li>
+          <Link href={'/acoes'}>Ações</Link>
+        </li>
+        <li>
           <Link href={'/sobre'}>Sobre</Link>
         </li>
         <li>
