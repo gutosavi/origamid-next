@@ -1,6 +1,7 @@
 'use server';
 
 import { Produto } from '@/components/client-fetch';
+import { updateTagActions } from './revalidate-path';
 
 type ProdutoInput = Omit<Produto, 'id'>;
 
@@ -23,6 +24,7 @@ export async function postProdutos(produto: ProdutoInput) {
 
     await response.json();
 
+    await updateTagActions('produtos');
     return { success: true };
   } catch (error) {
     console.error(error);

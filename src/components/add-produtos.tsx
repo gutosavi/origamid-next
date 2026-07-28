@@ -3,7 +3,6 @@ import React from 'react';
 import { Produto } from './client-fetch';
 import { postProdutos } from '@/actions/post-produtos';
 import { useRouter } from 'next/navigation';
-import { updateTagActions } from '@/actions/revalidate-path';
 
 const classNameInput = 'w-full border border-gray-100 p-1';
 
@@ -58,7 +57,6 @@ export default function AdicionarProdutos() {
       }
 
       if (formResult?.success) {
-        await updateTagActions('produtos');
         router.push('/produtos');
       }
     } catch (error) {
