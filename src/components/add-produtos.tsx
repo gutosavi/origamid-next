@@ -51,14 +51,9 @@ export default function AdicionarProdutos() {
     try {
       const formResult = await postProdutos(formData);
 
-      if (!formResult?.success) {
-        console.log('Erro', formResult?.message);
-        // aqui colocamos uma lógica de estado de erro, mas por se tratar de ambiente de estudo, não foi adicionada.
-      }
-
-      if (formResult?.success) {
-        router.push('/produtos');
-      }
+      if (!formResult?.success) console.log('Erro', formResult?.message);
+      // aqui colocamos uma lógica de estado de erro, mas por se tratar de ambiente de estudo, não foi adicionada.
+      if (formResult?.success) router.push('/produtos');
     } catch (error) {
       console.error(error);
     }
