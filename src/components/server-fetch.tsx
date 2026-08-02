@@ -32,3 +32,5 @@ export default async function ServerFetch() {
     </ul>
   );
 }
+
+// máquina formatada, apenas fazendo um git de teste
