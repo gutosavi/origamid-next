@@ -7,14 +7,18 @@ export type Produto = {
   importado: 0 | 1;
 };
 
-export default async function ServerFetch() {
+export default async function ServerFetch({ espera }: { espera?: number }) {
   let produtos: Produto[] = [];
+  if (espera) await new Promise((resolve) => setTimeout(resolve, espera));
+  // Promessa adicionada apenas para testar o loading no componente
 
   try {
-    const response = await fetch('https://api.origamid.online/produtos');
+    const response = await fetch("https://api.origamid.online/produtos", {
+      cache: "no-store",
+    });
 
     if (!response.ok)
-      throw new Error('Ocorreu algum problema ao carregar os produtos.');
+      throw new Error("Ocorreu algum problema ao carregar os produtos.");
     produtos = (await response.json()) as Produto[];
   } catch (error) {
     if (error instanceof Error) {
@@ -32,5 +36,3 @@ export default async function ServerFetch() {
     </ul>
   );
 }
-
-// máquina formatada, apenas fazendo um git de teste

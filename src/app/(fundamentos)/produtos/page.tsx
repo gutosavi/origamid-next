@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: 'Essa é a página de Produtos.',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default function ProdutosPage() {
   return (
     <main className="w-full h-full flex flex-col p-2.5">
