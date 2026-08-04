@@ -9,7 +9,7 @@ Repositório criado para documentar meus estudos em Next.js.
 - ✅ Route Handlers
 - ✅ Cookies
 - ✅ Login
-- ⏳ Server Actions
-- ⏳ Cache
+- ✅ Server Actions
+- ✅ Cache
 - ⏳ Middleware
 - ⏳ Prisma

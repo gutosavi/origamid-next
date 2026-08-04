@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
 import {
-  revalidatePathActions,
-  revalidateTagActions,
+  // revalidatePathActions,
+  // revalidateTagActions,
   updateTagActions,
-} from '@/actions/revalidate-path';
+} from "@/actions/revalidate-path";
 
 export default function Atualizar() {
   const handleClick = () => {
     // revalidatePathActions('/acoes');
     // revalidateTagActions('acoes');
-    updateTagActions('acoes');
+    updateTagActions("acoes");
   };
 
   return (

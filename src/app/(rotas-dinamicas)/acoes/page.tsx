@@ -1,12 +1,12 @@
-import Atualizar from '@/components/ui/atualizar';
-import { Metadata } from 'next';
+import Atualizar from "@/components/ui/atualizar";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Ações',
-  description: 'Página dos ações',
+  title: "Ações",
+  description: "Página dos ações",
 };
 
-type AcoesProps = {
+export type AcoesProps = {
   nome: string;
   descricao: string;
   atualizada: string;
@@ -15,9 +15,9 @@ type AcoesProps = {
 };
 
 export default async function AcoesPage() {
-  const response = await fetch('https://api.origamid.online/acoes/lua', {
+  const response = await fetch("https://api.origamid.online/acoes/lua", {
     next: {
-      tags: ['acoes'],
+      tags: ["acoes"],
     },
   });
 
