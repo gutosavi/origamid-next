@@ -32,7 +32,7 @@ export default async function AcoesPage() {
   const data: AcoesProps = await response.json();
 
   return (
-    <main className="p-2.5">
+    <main className="p-2.5 font-sans">
       <h1>{data.nome}</h1>
       <p>Preço atual: {data.preco}</p>
       <p>Preço anterior: {data.preco_anterior}</p>
