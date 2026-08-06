@@ -1,16 +1,23 @@
-import { fetchAulas } from '@/services/api';
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Curso',
-  description: 'Página do curso',
-};
+import Button from "@/components/ui/Button";
+import { fetchAulas } from "@/services/api";
+import { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 type PageParams = {
   params: Promise<{ cursoSlug: string }>;
 };
+
+export async function generateMetadata({
+  params,
+}: PageParams): Promise<Metadata> {
+  const { cursoSlug } = await params;
+  const data = await fetchAulas(cursoSlug);
+
+  return {
+    title: `${data?.nome}`,
+  };
+}
 
 export default async function CursoPage({ params }: PageParams) {
   const { cursoSlug } = await params;
@@ -21,7 +28,8 @@ export default async function CursoPage({ params }: PageParams) {
   }
 
   return (
-    <main>
+    <main className="p-2.5">
+      <Button route="/cursos" name="Voltar" />
       <div className="px-2.5">
         <h1 className="font-bold text-2xl">{data.nome}</h1>
         <p className="text-lg">{data.descricao}</p>
