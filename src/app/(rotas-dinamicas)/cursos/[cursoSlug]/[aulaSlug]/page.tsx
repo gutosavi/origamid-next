@@ -36,10 +36,6 @@ export default async function AulaPage({ params }: PageParams) {
     notFound();
   }
 
-  if (!resultado) {
-    notFound();
-  }
-
   return (
     <main className="p-2.5">
       <Button route={`/cursos/${cursoSlug}`} name={"Voltar"} />

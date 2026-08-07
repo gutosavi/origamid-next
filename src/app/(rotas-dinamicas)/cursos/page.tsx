@@ -17,6 +17,8 @@ export async function generateStaticParams() {
 export default async function CursosPage() {
   const data: CursoProp[] | null = await fetchCursos();
 
+  // if (!data) notFound();
+
   return (
     <main>
       <h1 className="text-2xl font-medium font-mono p-2.5">Cursos</h1>
